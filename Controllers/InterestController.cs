@@ -20,7 +20,14 @@ namespace MvcDemo.Controllers
         [HttpPost]
         public ActionResult Index(Interest model)
         {
-            model.Result = model.Amount * model.Rate / 100;
+            if (model.Amount < 100000 && model.Rate > 20)
+                ModelState.AddModelError("Rate", "Interest rate cannot be > 20 when amount < 100000");
+
+            if (ModelState.IsValid)
+            {
+                model.Result = model.Amount * model.Rate / 100;
+            }
+
             return View(model);
         }
     }
