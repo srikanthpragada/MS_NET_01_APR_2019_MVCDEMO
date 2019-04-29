@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h2>Fee Calculator</h2>
+    <form method="post">
+        Course
+        <select name="fee">
+            <option value="4000">Java</option>
+            <option value="4500">Python</option>
+            <option value="6000">MS.NET</option>
+        </select>
+        <br />
+        Timings
+        <input type="radio" name="timings" value="m" />Morning
+        <input type="radio" name="timings" value="a" />Afternoon
+        <input type="radio" name="timings" value="e" checked="checked" />Evening
+        <br/>
+        <input type="checkbox" name="material" value="m" /> Course Material 
+        <p />
+        <input type="submit" value="Show Fee" />
+        <p/>
+        <h3>Course Fee : @ViewBag.Fee</h3>
+    </form>
+</body>
+</html>

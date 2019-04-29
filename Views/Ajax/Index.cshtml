@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ajax Demo</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function getDateTime() {
+            $.get("/Ajax/Now", null, showDateTime);
+        }
+        function showDateTime(response) {
+            $("#now").text(response);
+        }
+    </script>
+</head>
+<body>
+ <h2>Ajax Demo</h2>
+ <button onclick="getDateTime()">Show Date and Time</button> <span id="now"></span>
+<p></p>
+ @Ajax.ActionLink("Show Date and Time","Now",
+      new AjaxOptions { UpdateTargetId = "now2" }) <span id="now2"></span>
+
+
+</body>
+</html>

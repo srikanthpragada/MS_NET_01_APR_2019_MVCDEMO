@@ -1,0 +1,35 @@
+﻿@model MvcDemo.Models.FeeViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Calculate</title>
+</head>
+<body>
+    <h4>Fee Calculator</h4>
+    @using (Html.BeginForm())
+    {
+        <div>Course : 
+        @Html.DropDownListFor(model => model.Fee, Model.Courses)
+        </div>
+        <div>
+            Timings :
+            @Html.RadioButtonFor(model => model.Timings, "m") Morning
+            @Html.RadioButtonFor(model => model.Timings, "a") Afternoon
+            @Html.RadioButtonFor(model => model.Timings, "e") Evening
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Material) Course Material
+        </div>
+        <p />
+        <input type="submit" value="Create" class="btn btn-default" />}
+        <h3>@ViewBag.Fee</h3>
+
+</body>
+</html>
