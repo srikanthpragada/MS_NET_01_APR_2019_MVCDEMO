@@ -6,22 +6,20 @@
 h1 {
     color :red;
 }
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+
+.banner {
+    font-family:Arial;
+    font-size:28pt;
+    font-weight:bold;
+    background-color:navy;
+    color:white;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.menu {
+    padding-top: 5pt;
+    font-family: verdana;
+    font-size: 12pt;
+    font-weight: bold;
+    background-color: silver;
+    padding-bottom: 5pt;
 }

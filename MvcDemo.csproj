@@ -143,6 +143,7 @@
     <Compile Include="Controllers\FeeController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\InterestController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +188,10 @@
     <Content Include="Views\Fee\Index.cshtml" />
     <Content Include="Views\Fee\Calculate.cshtml" />
     <Content Include="Views\Ajax\Index.cshtml" />
+    <Content Include="Views\Ajax\Table.cshtml" />
+    <Content Include="Views\Ajax\GenerateTable.cshtml" />
+    <Content Include="Views\Shared\student_master.cshtml" />
+    <Content Include="Views\Students\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

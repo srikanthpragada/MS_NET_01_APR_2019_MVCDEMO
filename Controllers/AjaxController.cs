@@ -18,5 +18,17 @@ namespace MvcDemo.Controllers
         {
             return DateTime.Now.ToString();
         }
+
+        public ActionResult Table()
+        {
+            return View();
+        }
+
+        public ActionResult GenerateTable(int number, int length)
+        { 
+            ViewBag.Number = number;
+            ViewBag.Length = length;
+            return PartialView();
+        }
     }
 }

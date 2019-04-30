@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Students Application </title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="banner">Students</div>
+    <div class="menu">
+        [<a href="/Students/Index">Home</a>]
+        &nbsp;
+        [<a href="/Students/List">List</a>]
+        &nbsp;
+        [<a href="/Students/Add">Add</a>]
+        &nbsp;
+        [<a href="/Students/Search">Search</a>]
+    </div>
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

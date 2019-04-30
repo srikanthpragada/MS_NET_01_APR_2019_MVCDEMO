@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Table</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+</head>
+<body>
+    <h2>Generate Table</h2>
+    @using (Ajax.BeginForm("GenerateTable", 
+        new AjaxOptions { UpdateTargetId = "table" }))
+    {
+    <span>Number : </span>
+    <input type="number" name="number" />
+
+    <span>Length : </span>
+    <input type="number" name="length" />
+    <input type="submit" value="Go" />
+    <p></p>
+    <div id="table"></div>
+    }
+</body>
+</html>
