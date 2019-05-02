@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcDemo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,11 +25,10 @@ namespace MvcDemo.Controllers
             return View();
         }
 
-        public ActionResult GenerateTable(int number, int length)
-        { 
-            ViewBag.Number = number;
-            ViewBag.Length = length;
-            return PartialView();
+        public ActionResult GenerateTable(TableViewModel model)
+        {
+           
+            return PartialView(model);
         }
     }
 }

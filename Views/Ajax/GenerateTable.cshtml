@@ -1,4 +1,5 @@
-﻿
+﻿@model MvcDemo.Models.TableViewModel
+    
 <table border="1" cellpadding="5pt">
     <tr>
         <th>Number</th>
@@ -6,12 +7,12 @@
         <th>Result</th>
     </tr>
 
-    @for(var i = 1; i <= ViewBag.Length; i ++)
+    @for(var i = 1; i <= Model.Length; i ++)
     {
     <tr>
-        <td>@ViewBag.Number</td>
+        <td>@Model.Number</td>
         <td>@i</td>
-        <td>@(ViewBag.Number * i)</td>
+        <td>@(Model.Number * i)</td>
     </tr>
     }
 </table>

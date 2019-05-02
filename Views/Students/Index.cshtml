@@ -10,6 +10,17 @@
 
 
 <h2>Students Application</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div>User : @User.Identity.Name  @Html.ActionLink("Logout", "Logout", "User") </div>
+}
+else
+{
+   <div>@Html.ActionLink("Login", "Login", "User")</div>
+}
+
+
 This applications allows you to list, add, search and modify students.
 
 

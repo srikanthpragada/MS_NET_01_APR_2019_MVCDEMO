@@ -13,5 +13,18 @@ namespace MvcDemo.Controllers
         {
             return View();
         }
+
+        [Authorize]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+
+        [Authorize]
+        public ActionResult Edit()
+        {
+            return View();
+        }
     }
 }

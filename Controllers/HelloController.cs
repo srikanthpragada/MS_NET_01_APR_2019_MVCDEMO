@@ -1,4 +1,5 @@
-﻿using MvcDemo.Models;
+﻿using MvcDemo.Filters;
+using MvcDemo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,8 @@ using System.Web.Mvc;
 
 namespace MvcDemo.Controllers
 {
+    [LogFilter]
+    [OverrideResultFilters]
     public class HelloController : Controller
     {
         // GET: Hello
@@ -16,8 +19,10 @@ namespace MvcDemo.Controllers
         }
 
         // Hello/Welcome 
+        [OverrideActionFilters]
         public string Welcome()
         {
+            HttpContext.Response.Write("<p>In Processs <p/>");
             return "Welcome To ASP.NET MVC";
         }
 

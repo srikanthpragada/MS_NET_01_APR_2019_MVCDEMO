@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using MvcDemo.Filters;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MvcDemo
@@ -7,7 +8,8 @@ namespace MvcDemo
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            // filters.Add(new HandleErrorAttribute());
+            // filters.Add(new FooterFilterAttribute());
         }
     }
 }
