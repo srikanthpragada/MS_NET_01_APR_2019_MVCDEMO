@@ -16,6 +16,16 @@
         [<a href="/Students/Add">Add</a>]
         &nbsp;
         [<a href="/Students/Search">Search</a>]
+         <span style="float:right">
+             @if (Request.IsAuthenticated)
+             {
+                 @Html.ActionLink("Logout", "Logout", "User")
+             }
+             else
+             {
+                 @Html.ActionLink("Login", "Login", "User")
+             }
+         </span>
     </div>
 
     @RenderBody()

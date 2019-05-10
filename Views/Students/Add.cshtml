@@ -1,17 +1,62 @@
-﻿
+﻿@model MvcDemo.Models.Student
+
 @{
-    Layout = null;
+    ViewBag.Title = "Add Student";
+    Layout = "~/Views/Shared/student_master.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Add Student</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Add</title>
-</head>
-<body>
-    <h1>Adding Student</h1>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p></p>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p></p>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FeePaid, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FeePaid, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FeePaid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p></p>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Course, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Course, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Course, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add Student" class="btn btn-default" />
+        </div>
+    </div>
+    <p></p>
+    @TempData["Message"]
+</div>
+}
 
-</body>
-</html>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

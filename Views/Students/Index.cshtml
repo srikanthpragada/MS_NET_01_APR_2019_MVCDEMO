@@ -4,23 +4,13 @@
     Layout = "~/Views/Shared/student_master.cshtml";
 }
 
-@section scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-
-<h2>Students Application</h2>
-
-@if (User.Identity.IsAuthenticated)
-{
-    <div>User : @User.Identity.Name  @Html.ActionLink("Logout", "Logout", "User") </div>
-}
-else
-{
-   <div>@Html.ActionLink("Login", "Login", "User")</div>
-}
-
-
+<h2>Summary</h2>
 This applications allows you to list, add, search and modify students.
+
+<p></p>
+No. of student enrolled so far : @ViewBag.Count
+<p></p>
+Total amount of fee collected so far : @ViewBag.TotalFee
+
 
 

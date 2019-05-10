@@ -12,6 +12,7 @@ namespace MvcDemo.Models
     {
         [Key]
         public int Id{ get; set; }
+        [StringLength(30,MinimumLength =5, ErrorMessage ="Min length is 5")]
         public string Name { get; set; }
         public string Email { get; set; }
         public int FeePaid { get; set; }
