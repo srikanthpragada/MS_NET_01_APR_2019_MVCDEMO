@@ -68,11 +68,46 @@ namespace MvcDemo.Controllers
 
 
         [Authorize]
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            var ctx = new CollegeContext();
+            var student = ctx.Students.Find(id);
+            if (student == null)
+            {
+                ViewBag.Message = "Sorry! Student Id not found!";
+                return View();
+            }
+            else
+            {
+                return View(student);
+            }
+
         }
 
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Edit(int id, Student model)
+        {
+            if (ModelState.IsValid)
+            {
+                var ctx = new CollegeContext();
+                /*
+                var student = ctx.Students.Find(id);
+                student.Name = model.Name;
+                student.Email = model.Email;
+                student.Course = model.Course; 
+                student.FeePaid = model.FeePaid;
+                */
+                model.Id = id;
+                ctx.Students.Attach(model); // attch to context
+                // change state to modified 
+                ctx.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
+                return RedirectToAction("List");
+            }
+            return View(model);
+        }
 
         [Authorize]
         public ActionResult Delete(int id)
@@ -101,5 +136,25 @@ namespace MvcDemo.Controllers
 
             return View();
         }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string sname)
+        {
+            var ctx = new CollegeContext();
+            var students = from s in ctx.Students
+                           where s.Name.Contains(sname)
+                           select s;
+
+            return PartialView("Selected_Students",students);
+        }
+
     }
+
+
 }
+
