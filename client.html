@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script>
+        function getMessages() {
+            $.get("http://localhost:62597/api/Messages", null, showMessages);
+        }
+        function showMessages(response) {
+            $("#messages").html(""); // clear UL
+            
+            for (var i = 0; i < response.length; i++)
+                $("#messages").append("<li>" + response[i] + "</li>")
+        }
+    </script>
+</head>
+<body>
+
+<button onclick="getMessages()">Get All Messages</button>
+<ul id="messages">
+
+</ul>
+
+</body>
+</html>

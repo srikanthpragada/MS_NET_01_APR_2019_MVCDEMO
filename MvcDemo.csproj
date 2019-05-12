@@ -152,6 +152,8 @@
     <Compile Include="Controllers\FeeController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\InterestController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\StudController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\FooterFilterAttribute.cs" />
@@ -168,6 +170,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="studclient.html" />
+    <Content Include="client.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

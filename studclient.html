@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Student Client</title>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script>
+        function getStudents() {
+            $.get("http://localhost:62597/api/Stud", null, showStudents);
+        }
+        function showStudents(response) {
+            $("#students").html(""); // clear UL
+
+            for (var i = 0; i < response.length; i++) {
+                var s = response[i];
+                $("#students").append("<li>" + s.Name + ","
+                    + s.Email + "," + s.Course + "," + s.FeePaid + "</li>")
+            }
+
+        }
+
+        function addStudent()
+        {
+            var formData = {
+                "Name": $("#txtName").val(),
+                "Email": $("#txtEmail").val(),
+                "Course": $("#txtCourse").val(),
+                "FeePaid": $("#txtFeePaid").val(),
+            };
+
+
+            $.ajax(
+                {
+                    url: "http://localhost:62597/api/Stud",
+                    type: "post",
+                    data: formData,
+                    success: addSuccess,
+                    error: addError
+                }
+            );
+        }
+
+        function addSuccess() {
+             alert("Student has been added successfully!")
+        }
+
+        function addError(response) {
+            console.log(response)
+            alert("Sorry! Could not add student dur to error :" + response)
+        }
+    </script>
+</head>
+<body>
+
+    <button onclick="getStudents()">Get All Students</button>
+    <ul id="students"></ul>
+    <h2>Add Student</h2>
+    Name <input type="text" id="txtName" />
+    Email <input type="text" id="txtEmail" />
+    FeePaid <input type="text" id="txtFeePaid" />
+    Course <input type="text" id="txtCourse" />
+    <p />
+    <button onclick="addStudent()">Add Student</button>
+
+    <h2>Delete Student</h2>
+    Id <input type="number" id="sid" />
+    <button onclick="deleteStudent()">Delete Student</button>
+
+</body>
+</html>
