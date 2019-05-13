@@ -5,19 +5,45 @@
     <title>Student Client</title>
     <script src="Scripts/jquery-3.3.1.js"></script>
     <script>
+        var URL = "http://localhost:62597/api/Stud/";
+
         function getStudents() {
-            $.get("http://localhost:62597/api/Stud", null, showStudents);
+            $.get(URL, null, showStudents);
         }
+
         function showStudents(response) {
             $("#students").html(""); // clear UL
 
             for (var i = 0; i < response.length; i++) {
                 var s = response[i];
-                $("#students").append("<li>" + s.Name + ","
+                $("#students").append("<li>" + s.Id + "," + s.Name + ","
                     + s.Email + "," + s.Course + "," + s.FeePaid + "</li>")
             }
 
         }
+
+        function getStudent() {
+            $.ajax(
+                {
+                    url: URL + $("#txtId").val(),
+                    type: 'get',
+                    success: showStudent,
+                    error: studentNotFound
+                }
+            );
+        }
+
+        function studentNotFound() {
+            alert("Sorry! Student not found!");
+        }
+
+        function showStudent(stud) {
+            $("#txtEName").val(stud.Name);
+            $("#txtECourse").val(stud.Course);
+            $("#txtEEmail").val(stud.Email);
+            $("#txtEFeePaid").val(stud.FeePaid);
+        }
+
 
         function addStudent()
         {
@@ -31,7 +57,7 @@
 
             $.ajax(
                 {
-                    url: "http://localhost:62597/api/Stud",
+                    url: URL,
                     type: "post",
                     data: formData,
                     success: addSuccess,
@@ -46,8 +72,65 @@
 
         function addError(response) {
             console.log(response)
-            alert("Sorry! Could not add student dur to error :" + response)
+            alert("Sorry! Could not add student due to error :" + response)
         }
+
+
+        function deleteStudent() {
+            // Turn on Ajax Icon
+            $.ajax(
+                {
+                    url: URL + $("#sid").val(),
+                    type: "delete",
+                    success: deleteSuccess,
+                    error: deleteError
+                }
+            );
+        }
+
+        function deleteSuccess() {
+            alert("Student has been deleted successfully!")
+        }
+
+        function deleteError(response) {
+            console.log(response)
+            alert("Sorry! Could not delete student due to error :" + response)
+        }
+
+
+
+
+        function updateStudent() {
+            var formData = {
+                "Name": $("#txtEName").val(),
+                "Email": $("#txtEEmail").val(),
+                "Course": $("#txtECourse").val(),
+                "FeePaid": $("#txtEFeePaid").val(),
+            };
+
+
+            $.ajax(
+                {
+                    url: URL + $("#txtId").val(),
+                    type: "put",
+                    data: formData,
+                    success: updateSuccess,
+                    error: updateError
+                }
+            );
+        }
+
+        function updateSuccess() {
+            alert("Student has been updated successfully!")
+        }
+
+        function updateError(response) {
+            console.log(response)
+            alert("Sorry! Could not update student due to error :" + response)
+        }
+
+
+
     </script>
 </head>
 <body>
@@ -66,5 +149,15 @@
     Id <input type="number" id="sid" />
     <button onclick="deleteStudent()">Delete Student</button>
 
+    <h2>Edit Student</h2>
+    Student Id <input type="text" id="txtId" /> 
+    <button onclick="getStudent()">Get Details</button>
+    <p></p>
+    Name <input type="text" id="txtEName" />
+    Email <input type="text" id="txtEEmail" />
+    FeePaid <input type="text" id="txtEFeePaid" />
+    Course <input type="text" id="txtECourse" />
+    <p />
+    <button onclick="updateStudent()">Update Student</button>
 </body>
 </html>

@@ -39,32 +39,21 @@ namespace MvcDemo.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutStudent(int id, Student student)
         {
+            student.Id = id;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != student.Id)
-            {
-                return BadRequest();
-            }
-
+            
             db.Entry(student).State = EntityState.Modified;
 
             try
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!StudentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return InternalServerError();
             }
 
             return StatusCode(HttpStatusCode.NoContent);
